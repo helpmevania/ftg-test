@@ -47,7 +47,7 @@ class TagallMod(loader.Module):
                     counter = 0
                     mentions = ""
             if counter == 0:
-     гшгггшгшг           await event.delete()
+                await event.delete()
                 time.sleep(0.2)
                 # await event.respond("анрег")
                 return
