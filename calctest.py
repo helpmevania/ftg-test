@@ -1,57 +1,81 @@
-from .. import loader, utils, telebot, datetime, time, math, re
+import telebot, time, math, re
 from telebot import types
-class КалякуляторMod(loader.Module):
-	"""Калякулятор вырожения"""
-	strings = {'name': 'Кукулятор'}
+
+
+
+class КулькуляторMod(loader.Module):
+	"""Кукулирует вырожения"""
+	strings = {'name': 'Кулькулятор'}
 	
-	async def calccmd(self, message):
-		""".calc <выражение или реплай на то, что нужно посчитать>
-			Кстати:
-			** - возвести в степень
-			/ - деление
-			% - деление по модулю"""
-		question = utils.get_args_raw(message)
-		reply = await message.get_reply_message()
-        def fact(float_):
-         return math.factorial(float_)
-
-def cos(float_):
-    return math.cos(float_)
-
-def sin(float_):
-    return math.sin(float_)
-
-def tg(float_):
-    return math.tan(float_)
+	async def calhelpccmd(self, message):
+             """Мной пользоваться очень просто. Вы мне отправляете выражение, а я вам возвращаю его результат.
+***Операторы***:
+    + - сложение;
+    - - вычитание;
+    \* - умножение;
+    / - деление;
+    \*\* - возведение в степнь.
     
-def tan(float_):
-    return math.tan(float_)
+***Функции***:
+    cos(x) - косинус x;
+    sin(x) - синус x;
+    tg(x) - тангенс x;
+    fact(x) - факториал x;
+    sqrt(x) - квадратный корень х;
+    sqr(x) - х в квадрате.
+***Логарифмы***:
+    log2(x) - логарифм х по основанию 2;
+    lg(х) - десятичный логарифм х;
+    ln(x) - натуральный логарифм x;
+    log(b, х) - логарифм х по основанию b;
+***Системы счисления***:
+    0bx - перевести двоичное число х в десятичное;
+    0ox - перевести восьмиричное число х в десятичное;
+    0xx - перевести шестнадцатиричное число х в десятичное;"""
 
+пи = п = p = pi = 3.141592653589793238462643 # число Пи asd 
 
-def ln(float_):
-    return math.log(float_)
+# Ниже все понятно...
+async def factcmd(self, message):
+    return math.factorial(self, message)
+    text = utils.get_args_raw(message)
 
-def log(base, float_):
+async def coscmd(self, message):
+    return math.cos(self, message)
+    text = utils.get_args_raw(message)
+
+async def sincmd(self, message):
+    return math.sin(self, message)
+    text = utils.get_args_raw(message)
+
+async def tgcmd(self, message):
+    return math.tan(self, message)
+    text = utils.get_args_raw(message)
+    
+async def tancmd(self, message):
+    return math.tan(self, message)
+    text = utils.get_args_raw(message)
+    
+async def lncmd(self, message):
+    return math.log(self, message)
+    text = utils.get_args_raw(message)
+
+async def logcmd(base, float_):
     return math.log(float_, base)
-
-def lg(float_):
+    text = utils.get_args_raw(message)
+async def lgcmd(float_):
     return math.log10(float_)
+    text = utils.get_args_raw(message)
 
-def log2(float_):
+async def log2cmd(float_):
     return math.log2(float_)
+    text = utils.get_args_raw(message)
 
-def exp(float_):
+async def expcmd(float_):
     return math.exp(float_)
-		if not question:
-			if not reply:
-				await utils.answer(message, "<b>2+2=5</b>")
-				return
-			else:
-				question = reply.raw_text
-		try:
-			answer = eval(question)
-			answer = f"<b>{question}=</b><code>{answer}</code>"
-		except Exception as e:
-			answer =  f"<b>{question}=</b><code>{e}</code>"
-		await utils.answer(message, answer)
-	
+    text = utils.get_args_raw(message)
+
+# Обработчик сообщений-команд
+
+
+# Обработчик всех сообщений
